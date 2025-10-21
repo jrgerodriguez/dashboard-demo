@@ -19,8 +19,10 @@ export default function Dashboard() {
     <div>
       <NavBar />
       <SideBar />
-      <main className="lg:ml-52 mt-12 p-6 font-sans bg-gray-50 min-h-screen ml-0">
-        <h1 className="text-xl font-semibold mb-6 text-gray-800">Clientes</h1>
+      <main className="lg:ml-52 mt-12 p-6 font-sans bg-gray-50 min-h-screen ml-0 text-sm sm:text-base">
+        <h1 className="text-base sm:text-xl font-semibold mb-6 text-gray-800">
+          Clientes
+        </h1>
 
         <div className="mb-6 flex flex-row items-center justify-between gap-4">
           {/* Barra de búsqueda */}
@@ -30,16 +32,13 @@ export default function Dashboard() {
             className="w-2/3 sm:w-1/2 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-400 text-gray-700 text-sm sm:text-base"
           />
 
-
-          <button className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 py-2.5 sm:px-4 sm:py-1.5 rounded-lg shadow-md transition-colors text-sm sm:text-md">
+          <button className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 py-2.5 sm:px-4 sm:py-1.5 rounded-lg shadow-md transition-colors text-sm sm:text-base">
             <UserPlusIcon className="block sm:hidden h-5 w-5" />
-
             <span className="hidden sm:flex items-center gap-2">
               <span className="text-lg font-bold">+</span>
               Nuevo Cliente
             </span>
           </button>
-
         </div>
 
         <div className="bg-white border border-gray-100">
@@ -65,8 +64,10 @@ export default function Dashboard() {
                   .map((cliente) => (
                     <tr
                       key={cliente.id}
-                      onClick={() => navigate(`/cliente/${cliente.id}`, {state: {cliente}})}
-                      className="hover:bg-blue-50 font-sans text-gray-800 transition-colors"
+                      onClick={() =>
+                        navigate(`/cliente/${cliente.id}`, { state: { cliente } })
+                      }
+                      className="hover:bg-blue-50 text-gray-800 transition-colors"
                     >
                       <td className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-200">
                         {cliente.nombre}
