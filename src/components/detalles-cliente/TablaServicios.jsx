@@ -52,10 +52,10 @@ export default function TablaServicios({ clienteId }) {
   });
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden text-sm sm:text-base lg:text-base">
       {/* Tabla en pantallas medianas y grandes */}
       <div className="hidden sm:block overflow-x-auto">
-        <table className="min-w-full text-sm text-gray-700">
+        <table className="min-w-full text-gray-700">
           <thead className="bg-gray-50 text-gray-800">
             <tr>
               <th
@@ -120,7 +120,7 @@ export default function TablaServicios({ clienteId }) {
               <span className="font-medium text-gray-800">{servicio.tipo}</span>
               <span className="text-gray-500 text-xs">{servicio.fecha}</span>
             </div>
-            <p className="text-gray-700 text-sm">
+            <p className="text-gray-700">
               Precio: <span className="font-semibold">${servicio.precio}</span>
             </p>
             <div className="flex justify-end gap-3 mt-2">
