@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import clientes from "../data/clientes.json";
 import FlechasPaginacion from "../components/FlechasPaginacion";
-import { UserPlusIcon } from "@heroicons/react/24/outline";
+import { UserPlusIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
@@ -19,7 +19,7 @@ export default function Dashboard() {
     <div>
       <NavBar />
       <SideBar />
-      <main className="lg:ml-52 mt-12 p-6 font-sans bg-gray-50 min-h-screen ml-0 text-sm sm:text-base">
+      <main className="lg:ml-52 mt-12 p-6 font-sans bg-white md:bg-gray-50 min-h-screen ml-0 text-sm sm:text-base">
         <h1 className="text-base sm:text-xl font-semibold mb-6 text-gray-800">
           Clientes
         </h1>
@@ -41,10 +41,10 @@ export default function Dashboard() {
           </button>
         </div>
 
-        <div className="bg-white border border-gray-100">
+        <div className="md:bg-white border md:border-gray-100">
           <div className="overflow-x-auto">
-            <table className="w-full border border-gray-200 text-sm sm:text-base">
-              <thead className="bg-gray-100 text-gray-700 font-semibold">
+            <table className="w-full md:border md:border-gray-200 text-sm sm:text-base">
+              <thead className="bg-gray-100 text-gray-700 font-semibold hidden md:table-header-group">
                 <tr>
                   <th className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-300 text-left">
                     Nombre
@@ -69,13 +69,14 @@ export default function Dashboard() {
                       }
                       className="hover:bg-blue-50 text-gray-800 transition-colors"
                     >
-                      <td className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-200">
+                      <td className="py-3 px-3 sm:py-3 sm:px-4 border-b border-gray-200 flex items-center justify-between md:table-cell">
                         {cliente.nombre}
+                        <ChevronRightIcon className="h-5 w-5 text-gray-700 block md:hidden" />
                       </td>
-                      <td className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-200">
+                      <td className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-200 hidden md:table-cell">
                         {cliente.telefono}
                       </td>
-                      <td className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-200">
+                      <td className="py-2 px-3 sm:py-3 sm:px-4 border-b border-gray-200 hidden md:table-cell">
                         {cliente.email}
                       </td>
                     </tr>
