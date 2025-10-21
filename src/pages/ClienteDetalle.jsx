@@ -6,7 +6,6 @@ import clientes from "../data/clientes.json";
 import TablaServicios from "../components/detalles-cliente/TablaServicios";
 import Notas from "../components/detalles-cliente/Notas";
 
-
 export default function ClienteDetalle() {
   const { id } = useParams();
   const location = useLocation();
@@ -16,7 +15,7 @@ export default function ClienteDetalle() {
 
   if (!cliente) {
     return (
-      <div className="min-h-screen bg-gray-50 font-sans">
+      <div className="min-h-screen bg-gray-50 font-sans text-sm sm:text-base">
         <NavBar />
         <SideBar />
         <main className="lg:ml-52 mt-12 p-6">
@@ -32,27 +31,27 @@ export default function ClienteDetalle() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-gray-50 font-sans text-sm sm:text-base">
       <NavBar />
       <SideBar />
       <main className="lg:ml-52 mt-12 p-6">
         {/* Información principal */}
         <section className="bg-white rounded-2xl shadow p-6 lg:max-w-2xl">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
             {cliente.nombre}
           </h1>
 
           <div className="space-y-4 text-gray-700">
             <div>
-              <p className="text-sm text-gray-500">Dirección</p>
+              <p className="text-gray-500">Dirección</p>
               <p className="font-medium">{cliente.direccion}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Teléfono</p>
+              <p className="text-gray-500">Teléfono</p>
               <p className="font-medium">{cliente.telefono}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Email</p>
+              <p className="text-gray-500">Email</p>
               <p className="font-medium">{cliente.email}</p>
             </div>
           </div>
@@ -102,16 +101,17 @@ export default function ClienteDetalle() {
                   </button>
                 </div>
                 <TablaServicios clienteId={id} />
-              </div>                              
-        )}
-          {activeTab === "notas" && (
-            <div>
+              </div>
+            )}
+
+            {activeTab === "notas" && (
+              <div>
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-lg font-semibold text-gray-800">
                     Notas
                   </h2>
 
-                  {/* Botón azul para agregar servicio */}
+                  {/* Botón azul para agregar nota */}
                   <button className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 sm:px-4 sm:py-1.5 rounded-lg shadow-md transition-colors text-sm sm:text-md">
                     <span className="hidden sm:flex items-center gap-2">
                       <span className="text-lg font-bold">+</span>
@@ -121,8 +121,8 @@ export default function ClienteDetalle() {
                   </button>
                 </div>
                 <Notas />
-            </div>
-        )}
+              </div>
+            )}
           </div>
         </div>
       </main>

@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function TablaServicios({ clienteId }) {
   const navigate = useNavigate();
-
-  const [sortDesc, setSortDesc] = useState(true); // Descendente por defecto
+  const [sortDesc, setSortDesc] = useState(true);
 
   const servicios = [
     {
@@ -26,9 +25,7 @@ export default function TablaServicios({ clienteId }) {
     },
   ];
 
-  // Función para convertir fecha de texto a Date
   const parseFecha = (fechaStr) => {
-    // Convertimos "28 Septiembre 2025" a "28 September 2025" para Date()
     const meses = {
       Enero: "January",
       Febrero: "February",
@@ -48,7 +45,6 @@ export default function TablaServicios({ clienteId }) {
     return new Date(`${mes} ${dia}, ${año}`);
   };
 
-  // Ordenar servicios según la fecha
   const serviciosOrdenados = [...servicios].sort((a, b) => {
     const fechaA = parseFecha(a.fecha);
     const fechaB = parseFecha(b.fecha);
@@ -56,8 +52,9 @@ export default function TablaServicios({ clienteId }) {
   });
 
   return (
-    <div className="bg-white border border-gray-200 overflow-hidden">
-      <div className="overflow-x-auto">
+    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      {/* Tabla en pantallas medianas y grandes */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="min-w-full text-sm text-gray-700">
           <thead className="bg-gray-50 text-gray-800">
             <tr>
@@ -83,7 +80,7 @@ export default function TablaServicios({ clienteId }) {
                 key={index}
                 onClick={() =>
                   navigate(`/servicio/${index}`, {
-                    state: { servicio, clienteId: clienteId },
+                    state: { servicio, clienteId },
                   })
                 }
                 className="border-t hover:bg-gray-50 transition-colors"
@@ -105,6 +102,37 @@ export default function TablaServicios({ clienteId }) {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Versión móvil tipo card, sin bordes extra */}
+      <div className="sm:hidden divide-y divide-gray-200">
+        {serviciosOrdenados.map((servicio, index) => (
+          <div
+            key={index}
+            onClick={() =>
+              navigate(`/servicio/${index}`, {
+                state: { servicio, clienteId },
+              })
+            }
+            className="p-4"
+          >
+            <div className="flex justify-between items-center mb-1">
+              <span className="font-medium text-gray-800">{servicio.tipo}</span>
+              <span className="text-gray-500 text-xs">{servicio.fecha}</span>
+            </div>
+            <p className="text-gray-700 text-sm">
+              Precio: <span className="font-semibold">${servicio.precio}</span>
+            </p>
+            <div className="flex justify-end gap-3 mt-2">
+              <button className="text-gray-500 hover:text-blue-600 transition-colors">
+                <Edit size={16} />
+              </button>
+              <button className="text-gray-500 hover:text-red-600 transition-colors">
+                <Trash2 size={16} />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
